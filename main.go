@@ -1,15 +1,24 @@
 package main
 
-// import "github.com/gin-gonic/gin"
-// import "github.com/369329303/myGin/gin"
-import "github.com/369329303/myGin/gin"
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
+
+// simulate some private data
+var secrets = gin.H{
+	"foo":    gin.H{"email": "foo@bar.com", "phone": "123433"},
+	"austin": gin.H{"email": "austin@example.com", "phone": "666"},
+	"lena":   gin.H{"email": "lena@guapa.com", "phone": "523443"},
+}
 
 func main() {
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
+	r := gin.New()
+	r.GET("/abcd", func(ctx *gin.Context) {
+		ctx.String(http.StatusOK, "hello")
+		// panic("panic-----")
 	})
-	r.Run()
+	// Listen and serve on 0.0.0.0:8080
+	r.Run(":8080")
 }
