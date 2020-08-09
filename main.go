@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -15,10 +16,15 @@ var secrets = gin.H{
 
 func main() {
 	r := gin.New()
-	r.GET("/abcd", func(ctx *gin.Context) {
-		ctx.String(http.StatusOK, "hello")
+	r.GET("/hello", func(ctx *gin.Context) {
+		ctx.String(http.StatusOK, "hello\n")
+		// panic("panic-----")
+	})
+
+	r.GET("/world", func(ctx *gin.Context) {
+		ctx.String(http.StatusOK, "world\n")
 		// panic("panic-----")
 	})
 	// Listen and serve on 0.0.0.0:8080
-	r.Run(":8080")
+	fmt.Println(r.Run(":8080"))
 }
