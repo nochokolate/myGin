@@ -13,6 +13,11 @@ var secrets = gin.H{
 	"lena":   gin.H{"email": "lena@guapa.com", "phone": "523443"},
 }
 
+// Add 获取两数之和
+func Add(a, b int) int {
+	return a + b
+}
+
 func main() {
 	r := gin.New()
 	r.GET("/abcd", func(ctx *gin.Context) {
